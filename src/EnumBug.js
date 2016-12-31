@@ -14,7 +14,8 @@ const hasEnumBug = !({}).propertyIsEnumerable.call(({ toString: undefined }), 't
 
 /**
  * Enumerate bugged properties that will not enumerate in older browsers.
- * This will return if the environment enumerates.
+ * This will return early if the environment properly supports enumeration of
+ * objects properties.
  * @param {Object}   obj      The object to enumerate
  * @param {Function} callback The function to call with the bugged property
  */
