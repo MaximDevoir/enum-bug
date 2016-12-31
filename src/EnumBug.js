@@ -20,8 +20,10 @@ const hasEnumBug = !({}).propertyIsEnumerable.call(({ toString: undefined }), 't
  * @param {Function} callback The function to call with the bugged property
  */
 function enumBug(obj, callback) {
+  /* istanbul ignore else */
   if (!hasEnumBug) return;
 
+  /* istanbul ignore next */
   for (let i = 0; i < enumBugsLength; i += 1) {
     const prop = enumBugProps[i];
     if (hasOwnProperty.call(obj, prop)) {
