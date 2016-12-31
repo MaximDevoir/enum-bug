@@ -24,6 +24,10 @@ describe('EnumBug', () => {
     cache = [];
   });
 
+  it('is an exported function', () => {
+    enumBug.should.be.a('function');
+  });
+
   it('should enumerate over all properties', () => {
     for (const prop in obj) {
       if (({}).hasOwnProperty.call(obj, prop)) {
