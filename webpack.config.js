@@ -10,6 +10,7 @@ const prodPlugins = [];
 if (isProduction) {
   prodPlugins.push(new webpack.optimize.UglifyJsPlugin({
     mangle: false,
+    beautify: true,
   }));
 }
 
@@ -20,8 +21,6 @@ module.exports = {
     filename: 'enumbug.js',
     path: path.join(__dirname, 'dist'),
     library: 'enumBug',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
   },
   module: {
     loaders: [
