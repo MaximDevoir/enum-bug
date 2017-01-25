@@ -9,7 +9,6 @@ const enumBugProps = [
 ];
 const enumBugsLength = enumBugProps.length;
 const hasOwnProperty = ({}).hasOwnProperty;
-
 const hasEnumBug = !({}).propertyIsEnumerable.call(({ toString: undefined }), 'toString');
 
 /**
