@@ -17,7 +17,8 @@ const hasEnumBug = !({}).propertyIsEnumerable.call(({ toString: undefined }), 't
  * This will return early if the environment properly supports enumeration of
  * objects properties.
  * @param {Object}   obj      The object to enumerate
- * @param {Function} callback The function to call with the bugged property
+ * @param {Function} callback The function to call with the bugged property.
+ *                            The callback is invoked with one argment: (prop).
  */
 function enumBug(obj, callback) {
   /* istanbul ignore else */
