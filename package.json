@@ -17,7 +17,6 @@
     "lint": "eslint --ignore-path .eslintignore .",
     "prebuild": "npm run build:clean && npm run test",
     "postbuild": "npm run build:codecov && npm run build:docs",
-    "postinstall": "node ./scripts/postinstall.js",
     "pretest": "npm run lint",
     "start": "cross-env NODE_ENV=development webpack --watch --progress --colors",
     "test": "mocha --compilers js:babel-register tests/*.spec.js"
