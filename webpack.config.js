@@ -21,6 +21,7 @@ module.exports = {
     filename: 'enumbug.js',
     path: path.join(__dirname, 'dist'),
     library: 'enumBug',
+    libraryTarget: 'commonjs2',
   },
   module: {
     loaders: [

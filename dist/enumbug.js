@@ -1,4 +1,4 @@
-var enumBug = function(modules) {
+module.exports = function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
         var module = installedModules[moduleId] = {
