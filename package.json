@@ -12,11 +12,11 @@
     "build": "npm run build:source",
     "build:source": "cross-env NODE_ENV=production webpack --progress --colors",
     "build:clean": "rm -rf ./dist/* && rm -rf ./docs/* && rm -rf ./coverage/*",
-    "build:codecov": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/mocha/bin/_mocha -- ./tests/*.spec.js",
     "build:docs": "jsdoc -c .jsdoc.json",
+    "coveralls": "./node_modules/.bin/babel-node ./node_modules/istanbul/lib/cli cover ./node_modules/mocha/bin/_mocha -- ./tests/*.spec.js",
     "lint": "eslint --ignore-path .eslintignore .",
     "prebuild": "npm run build:clean && npm run test",
-    "postbuild": "npm run build:codecov && npm run build:docs",
+    "postbuild": "npm run coveralls && npm run build:docs",
     "pretest": "npm run lint",
     "start": "cross-env NODE_ENV=development webpack --watch --progress --colors",
     "test": "mocha --compilers js:babel-register tests/*.spec.js"
