@@ -112,7 +112,7 @@ action "release.npm.publish" {
   uses = "actions/npm@master"
   args = "publish --access public"
   secrets = [
-    "ENUM_BUG_AUTH_TOKEN",
+    "NPM_AUTH_TOKEN",
   ]
 }
 
