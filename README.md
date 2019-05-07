@@ -32,7 +32,7 @@ enumBug(obj, prop => {
 });
 ```
 
-By executing the code in an environment that contains this enumeration bug (i.e. Internet Explorer 8 and below), the result will be
+By executing the code in an environment that contains an object enumeration bug (i.e. Internet Explorer 8 and below), the result will be
 
 ```python
 // console
@@ -57,6 +57,6 @@ The bugged properties are:
 - `toString`
 - `valueOf`
 
-This module will only enumerate over bugged properties in environments where they would not otherwise enumerate over noted properties.
+This module will only enumerate over bugged properties in environments where they would not otherwise be enumerated over.
 
-If the environment supports proper enumeration, no properties enumerated.
+If the environment supports object property enumeration, no properties are enumerated.
