@@ -8,16 +8,16 @@ const enumBugProps = [
   'valueOf',
 ];
 const enumBugsLength = enumBugProps.length;
-const hasOwnProperty = ({}).hasOwnProperty;
+const { hasOwnProperty } = Object.prototype;
 const hasEnumBug = !({}).propertyIsEnumerable.call(({ toString: undefined }), 'toString');
 
 /**
- * Enumerate bugged properties that will not enumerate in older browsers.
- * This will return early if the environment properly supports enumeration of
- * objects properties.
+ * Enumerate bugged properties that will not enumerate in older browsers. This
+ * will return early if the environment properly supports enumeration of objects
+ * properties.
  * @param {Object}   obj      The object to enumerate
- * @param {Function} callback The function to call with the bugged property.
- *                            The callback is invoked with one argment: (prop).
+ * @param {Function} callback The function to call with the bugged property. The
+ *                            callback is invoked with one argument: (prop).
  */
 function enumBug(obj, callback) {
   /* istanbul ignore else */

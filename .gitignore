@@ -37,3 +37,4 @@ npm-debug.log*
 coverage
 docs
 node_modules
+.nyc_output
