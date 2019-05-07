@@ -2,7 +2,7 @@
   "name": "enum-bug",
   "version": "1.0.4",
   "description": "Enumerate bugged properties that will not enumerate in older browsers.",
-  "main": "./dist/enumbug.js",
+  "main": "./dist/enum-bug.js",
   "license": "MIT",
   "author": {
     "name": "Maxim Devoir",

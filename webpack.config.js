@@ -1,19 +1,24 @@
 /* eslint import/no-extraneous-dependencies: 0, no-unused-vars: 1, no-console: 0 */
 const webpack = require('webpack');
 const path = require('path');
+const pkg = require('./package.json');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const libraryName = pkg.name;
 
 console.log('isProduction: ', isProduction);
 
 module.exports = {
   entry: './src/EnumBug.js',
   mode: isProduction ? 'production' : 'development',
-  devtool: isProduction ? undefined : 'source-map',
+  optimization: {
+    minimize: false,
+  },
+  devtool: isProduction ? undefined : 'inline-source-map',
   output: {
-    filename: 'enumbug.js',
+    filename: `${libraryName}.js`,
     path: path.join(__dirname, 'dist'),
-    library: 'enum-bug',
+    library: libraryName,
     libraryTarget: 'umd',
   },
   module: {
