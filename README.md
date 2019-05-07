@@ -1,14 +1,16 @@
 # Enum Bug
+
 Enumerate bugged properties that will not enumerate in older browsers (i.e. IE 8 and below).
 
 ## Installation
+
 ```
-npm install bitbucket:maximdevoir/enum-bug
+yarn install enum-bug
 ```
 
 ## Usage
 
-```
+```javascript
 import enumBug from 'enum-bug';
 
 const obj = {
@@ -29,7 +31,7 @@ enumBug(obj, (prop) => {
 ```
 
 If you run this in in bugged environments (i.e. Internet Explorer 8 and below) the result will be
-```
+```python
 // console
  => constructor is bugged
  => hasOwnProperty is bugged
