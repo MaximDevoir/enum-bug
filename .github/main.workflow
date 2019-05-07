@@ -104,7 +104,7 @@ action "release.test" {
 action "release.auth" {
   needs = ["release.test"]
   uses = "actions/bin/filter@master"
-  args = ["actor", "maximdevoir"]
+  args = ["actor", "MaximDevoir"]
 }
 
 action "release.npm.publish" {
