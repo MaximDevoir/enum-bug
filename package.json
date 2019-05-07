@@ -16,7 +16,6 @@
     "coveralls": "./node_modules/.bin/nyc report --reporter=lcov --reporter=text ./node_modules/mocha/bin/_mocha --require @babel/register tests/*.spec.js",
     "lint": "eslint --ignore-path .eslintignore .",
     "prebuild": "npm run build:clean && npm run test",
-    "postbuild": "npm run coveralls && npm run build:docs",
     "pretest": "npm run lint",
     "start": "cross-env NODE_ENV=development webpack-cli --watch --progress --colors",
     "test": "mocha --require @babel/register tests/*.spec.js"
