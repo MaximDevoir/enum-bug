@@ -16,6 +16,7 @@
     "precoverage": "rm -rf coverage && rm -rf .nyc_output",
     "coverage": "./node_modules/.bin/nyc npm test && ./node_modules/.bin/nyc report --reporter=lcov",
     "coverage:report": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "coveralls": "npm run coverage && npm run coverage:report",
     "lint": "eslint --ignore-path .eslintignore .",
     "prebuild": "npm run build:clean && npm run test",
     "start": "cross-env NODE_ENV=development webpack-cli --watch --progress --colors",

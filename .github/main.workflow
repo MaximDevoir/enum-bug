@@ -46,7 +46,7 @@ action "branch.test.node.10" {
 action "branch.coveralls.node.10" {
   needs = "branch.install.node.10"
   uses = "actions/npm@master"
-  args = "run coverage:report"
+  args = "run coveralls"
   secrets = ["COVERALLS_REPO_TOKEN"]
   env = {
     COVERALLS_SERVICE_NAME = "Github Actions"
