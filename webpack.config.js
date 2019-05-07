@@ -1,47 +1,39 @@
-/* eslint import/no-extraneous-dependencies: 0 no-unused-vars: 1 */
+/* eslint import/no-extraneous-dependencies: 0, no-unused-vars: 1, no-console: 0 */
 const webpack = require('webpack');
 const path = require('path');
 
 const isProduction = process.env.NODE_ENV === 'production';
+
 console.log('isProduction: ', isProduction);
-
-const prodPlugins = [];
-
-if (isProduction) {
-  prodPlugins.push(new webpack.optimize.UglifyJsPlugin({
-    mangle: false,
-    beautify: true,
-  }));
-}
 
 module.exports = {
   entry: './src/EnumBug.js',
+  mode: isProduction ? 'production' : 'development',
   devtool: isProduction ? undefined : 'source-map',
   output: {
     filename: 'enumbug.js',
     path: path.join(__dirname, 'dist'),
-    library: 'enumBug',
-    libraryTarget: 'commonjs2',
+    library: 'enum-bug',
+    libraryTarget: 'umd',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel',
         exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
+        enforce: 'pre',
         test: /\.js$/,
-        loader: 'eslint-loader',
         exclude: /node_modules/,
+        loader: 'eslint-loader',
       },
     ],
-  },
-  plugins: [].concat(prodPlugins),
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  eslint: {
-    configFile: path.join(__dirname, '.eslintrc'),
   },
 };

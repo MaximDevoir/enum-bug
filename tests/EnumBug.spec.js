@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-restricted-syntax: 0 */
 import chai from 'chai';
-import enumBug from './../src/EnumBug';
+import enumBug from '../src/EnumBug';
 
 chai.should();
 
