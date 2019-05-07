@@ -1,12 +1,14 @@
 # Enum Bug
 
-Enumerate bugged properties that will not enumerate in older browsers (i.e. IE 8 and below).
+> Enumerate properties that will not enumerate in older browsers (i.e. IE 8 and below).
 
 ## Installation
 
+```shell
+npm install enum-bug
 ```
-yarn install enum-bug
-```
+
+Note: use `add --save` if you are using npm < 5.0.0
 
 ## Usage
 
@@ -14,23 +16,24 @@ yarn install enum-bug
 import enumBug from 'enum-bug';
 
 const obj = {
-  hi: 'works fine',
-  constructor: 'bugged property'
-  hasOwnProperty: 'bugged property'
-  isPrototypeOf: 'bugged property'
-  propertyIsEnumerable: 'bugged property'
-  toLocaleString: 'bugged property'
-  toString: 'bugged property'
-  valueOf: 'bugged property'
-  bye: 'alright',
+  hello: 'not a bugged property',
+  constructor: 'bugged property',
+  hasOwnProperty: 'bugged property',
+  isPrototypeOf: 'bugged property',
+  propertyIsEnumerable: 'bugged property',
+  toLocaleString: 'bugged property',
+  toString: 'bugged property',
+  valueOf: 'bugged property',
+  goodbye: 'another normally enumerated property',
 };
 
-enumBug(obj, (prop) => {
+enumBug(obj, prop => {
   console.log(`${prop} is bugged.`);
 });
 ```
 
-If you run this in in bugged environments (i.e. Internet Explorer 8 and below) the result will be
+By executing the code in an environment that contains this enumeration bug (i.e. Internet Explorer 8 and below), the result will be
+
 ```python
 // console
  => constructor is bugged
@@ -44,4 +47,16 @@ If you run this in in bugged environments (i.e. Internet Explorer 8 and below) t
 
 ## Note
 
-This module will only enumerate over bugged-props in environments that have this enumeration bug. Otherwise, it will do nothing.
+The bugged properties are:
+
+- `constructor`
+- `hasOwnProperty`
+- `isPrototypeOf`
+- `propertyIsEnumerable`
+- `toLocaleString`
+- `toString`
+- `valueOf`
+
+This module will only enumerate over bugged properties in environments where they would not otherwise enumerate over noted properties.
+
+If the environment supports proper enumeration, no properties enumerated.
