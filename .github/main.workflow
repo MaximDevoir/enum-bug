@@ -115,3 +115,64 @@ action "release.npm.publish" {
     "NPM_AUTH_TOKEN",
   ]
 }
+
+################################################
+# Workflow for a Pull request
+################################################
+workflow "build and test on PR" {
+  resolves = [
+    "pr.lint.node.10",
+    "pr.test.node.10",
+    "pr.test.node.8",
+  ]
+  on = "pull_request"
+}
+
+# node 10
+action "pr.filter" {
+  uses = "actions/bin/filter@master"
+  args = "action 'opened|synchronize|reopened'"
+}
+
+action "pr.install.node.10" {
+  needs = ["pr.filter"]
+  uses = "docker://node:10"
+  args = "yarn install"
+}
+
+action "pr.build.node.10" {
+  uses = "docker://node:10"
+  needs = ["pr.install.node.10"]
+  args = "yarn run build"
+}
+
+action "pr.lint.node.10" {
+  uses = "docker://node:10"
+  needs = ["pr.install.node.10"]
+  args = "yarn run lint"
+}
+
+action "pr.test.node.10" {
+  uses = "docker://node:10"
+  needs = ["pr.build.node.10"]
+  args = "yarn run test"
+}
+
+# node 8
+action "pr.install.node.8" {
+  needs = ["pr.filter"]
+  uses = "docker://node:8"
+  args = "yarn install"
+}
+
+action "pr.build.node.8" {
+  uses = "docker://node:8"
+  needs = ["pr.install.node.8"]
+  args = "yarn run build"
+}
+
+action "pr.test.node.8" {
+  uses = "docker://node:8"
+  needs = ["pr.build.node.8"]
+  args = "yarn run test"
+}
