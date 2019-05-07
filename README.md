@@ -2,6 +2,11 @@
 
 > Enumerate properties that will not enumerate in older browsers (i.e. IE 8 and below).
 
+[![license](https://badgen.net/badge/license/MIT/blue)](https://www.npmjs.com/package/enum-bug)
+[![bundlephobia minzip](https://badgen.net/bundlephobia/minzip/enum-bug)](https://bundlephobia.com/result?p=enum-bug)
+[![npm dependents](https://badgen.net/npm/dependents/enum-bug)](https://www.npmjs.com/package/enum-bug?activeTab=dependents)
+[![downloads](https://badgen.net/npm/dt/enum-bug)](https://www.npmjs.com/package/enum-bug)
+
 ## Installation
 
 ```shell
