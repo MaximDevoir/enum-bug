@@ -2,6 +2,11 @@
 
 > Enumerate properties that will not enumerate in older browsers (i.e. IE 8 and below).
 
+[![license](https://badgen.net/badge/license/MIT/blue)](https://www.npmjs.com/package/enum-bug)
+[![bundlephobia minzip](https://badgen.net/bundlephobia/minzip/enum-bug)](https://bundlephobia.com/result?p=enum-bug)
+[![npm dependents](https://badgen.net/npm/dependents/enum-bug)](https://www.npmjs.com/package/enum-bug?activeTab=dependents)
+[![downloads](https://badgen.net/npm/dt/enum-bug)](https://www.npmjs.com/package/enum-bug)
+
 ## Installation
 
 ```shell
@@ -32,7 +37,7 @@ enumBug(obj, prop => {
 });
 ```
 
-By executing the code in an environment that contains this enumeration bug (i.e. Internet Explorer 8 and below), the result will be
+By executing the code in an environment that contains an object enumeration bug (i.e. Internet Explorer 8 and below), the result will be
 
 ```python
 // console
@@ -57,6 +62,6 @@ The bugged properties are:
 - `toString`
 - `valueOf`
 
-This module will only enumerate over bugged properties in environments where they would not otherwise enumerate over noted properties.
+This module will only enumerate over bugged properties in environments where they would not otherwise be enumerated over.
 
-If the environment supports proper enumeration, no properties enumerated.
+If the environment supports object property enumeration, no properties are enumerated.
