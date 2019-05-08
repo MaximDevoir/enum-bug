@@ -30,11 +30,13 @@ describe('EnumBug', () => {
 
   it('should enumerate over all properties', () => {
     for (const prop in obj) {
+      /* istanbul ignore else  */
       if (({}).hasOwnProperty.call(obj, prop)) {
         cache.push(prop);
       }
     }
 
+    /* istanbul ignore next */
     enumBug(obj, (prop) => {
       cache.push(prop);
     });

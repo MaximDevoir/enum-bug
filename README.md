@@ -6,6 +6,8 @@
 [![bundlephobia minzip](https://badgen.net/bundlephobia/minzip/enum-bug)](https://bundlephobia.com/result?p=enum-bug)
 [![npm dependents](https://badgen.net/npm/dependents/enum-bug)](https://www.npmjs.com/package/enum-bug?activeTab=dependents)
 [![downloads](https://badgen.net/npm/dt/enum-bug)](https://www.npmjs.com/package/enum-bug)
+[![Coverage Status](https://coveralls.io/repos/github/MaximDevoir/enum-bug/badge.svg?branch=master)](https://coveralls.io/github/MaximDevoir/enum-bug?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/MaximDevoir/enum-bug/badge.svg)](https://snyk.io/test/github/MaximDevoir/enum-bug)
 
 ## Installation
 

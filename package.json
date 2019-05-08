@@ -1,6 +1,6 @@
 {
   "name": "enum-bug",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Enumerate bugged properties that will not enumerate in older browsers.",
   "main": "./dist/enum-bug.js",
   "license": "MIT",
@@ -11,12 +11,14 @@
   "scripts": {
     "build": "npm run build:source",
     "build:source": "cross-env NODE_ENV=production webpack-cli --progress --colors",
-    "build:clean": "rm -rf ./dist/* && rm -rf ./docs/* && rm -rf ./coverage/*",
+    "build:clean": "rm -rf ./dist/* && rm -rf ./docs/*",
     "build:docs": "jsdoc -c .jsdoc.json",
-    "coveralls": "./node_modules/.bin/nyc report --reporter=lcov --reporter=text ./node_modules/mocha/bin/_mocha --require @babel/register tests/*.spec.js",
+    "precoverage": "rm -rf coverage && rm -rf .nyc_output",
+    "coverage": "./node_modules/.bin/nyc npm test && ./node_modules/.bin/nyc report --reporter=lcov",
+    "coverage:report": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "coveralls": "npm run coverage && npm run coverage:report",
     "lint": "eslint --ignore-path .eslintignore .",
     "prebuild": "npm run build:clean && npm run test",
-    "pretest": "npm run lint",
     "start": "cross-env NODE_ENV=development webpack-cli --watch --progress --colors",
     "test": "mocha --require @babel/register tests/*.spec.js"
   },
@@ -29,6 +31,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-add-module-exports": "^1.0.2",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -41,6 +44,7 @@
     "minami": "^1.2.3",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
+    "snyk": "^1.162.0",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2"
   }
