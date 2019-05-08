@@ -57,7 +57,7 @@ action "branch.coveralls.node.10" {
 action "snyk.audit" {
   needs = "branch.install.node.10"
   uses = "clarkio/snyk-cli-action@master"
-  args = "test"
+  args = ["test", '--dev']
   secrets = ["SNYK_TOKEN"]
 }
 
