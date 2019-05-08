@@ -64,6 +64,6 @@ The bugged properties are:
 - `toString`
 - `valueOf`
 
-This module will only enumerate over bugged properties in environments where they would not otherwise be enumerated over.
+This module will only enumerate over bugged properties in environments where they would not otherwise be enumerated.
 
-If the environment supports object property enumeration, no properties are enumerated.
+If the environment enumerates object properties properly, then no properties are enumerated.
