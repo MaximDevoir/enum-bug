@@ -8,7 +8,8 @@ workflow "build and test, conditional publish" {
     "branch.lint.node.10",
     "branch.test.node.10",
     "branch.coveralls.node.10",
-    "release.npm.publish"
+    "release.npm.publish",
+    "snyk.audit"
   ]
   on = "push"
 }
@@ -51,6 +52,13 @@ action "branch.coveralls.node.10" {
   env = {
     COVERALLS_SERVICE_NAME = "Github Actions"
   }
+}
+
+action "snyk.audit" {
+  needs = "branch.install.node.10"
+  uses = "clarkio/snyk-cli-action@master"
+  args = "test"
+  secrets = ["SNYK_TOKEN"]
 }
 
 ################################################
