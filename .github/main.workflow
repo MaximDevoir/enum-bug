@@ -61,17 +61,6 @@ action "snyk.audit" {
   secrets = ["SNYK_TOKEN"]
 }
 
-################################################
-# Workflow for a NPM release when a tag is
-# pushed
-################################################
-# workflow "npm release" {
-#   resolves = [
-#     "release.npm.publish"
-#   ]
-#   on = "push"
-# }
-
 action "release.filter" {
   needs = ["branch.test.node.10"]
   uses = "actions/bin/filter@master"
@@ -100,7 +89,10 @@ workflow "build and test on PR" {
   resolves = [
     "pr.lint.node.10",
     "pr.test.node.10",
-    "pr.test.node.8",
+    "pr.snyk.audit",
+    "pr.coveralls.node.10",
+    "pr.npm.dry-publish"
+
   ]
   on = "pull_request"
 }
@@ -109,6 +101,12 @@ workflow "build and test on PR" {
 action "pr.filter" {
   uses = "actions/bin/filter@master"
   args = "action 'opened|synchronize|reopened'"
+}
+
+action "pr.npm.dry-publish" {
+  needs = ["pr.filter"]
+  uses = "actions/npm@master"
+  args = "publish --dry-run"
 }
 
 action "pr.install.node.10" {
@@ -135,21 +133,20 @@ action "pr.test.node.10" {
   args = "yarn run test"
 }
 
-# node 8
-action "pr.install.node.8" {
-  needs = ["pr.filter"]
-  uses = "docker://node:8"
-  args = "yarn install"
+action "pr.coveralls.node.10" {
+  needs = "pr.install.node.10"
+  uses = "actions/npm@master"
+  args = "run coveralls"
+  secrets = ["COVERALLS_REPO_TOKEN"]
+  env = {
+    COVERALLS_SERVICE_NAME = "Github Actions"
+  }
 }
 
-action "pr.build.node.8" {
-  uses = "docker://node:8"
-  needs = ["pr.install.node.8"]
-  args = "yarn run build"
+action "pr.snyk.audit" {
+  needs = "pr.install.node.10"
+  uses = "clarkio/snyk-cli-action@master"
+  args = ["test"]
+  secrets = ["SNYK_TOKEN"]
 }
 
-action "pr.test.node.8" {
-  uses = "docker://node:8"
-  needs = ["pr.build.node.8"]
-  args = "yarn run test"
-}
