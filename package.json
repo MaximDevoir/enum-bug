@@ -1,6 +1,6 @@
 {
   "name": "enum-bug",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Enumerate bugged properties that will not enumerate in older browsers.",
   "main": "./dist/enum-bug.js",
   "license": "MIT",
